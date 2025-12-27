@@ -1,0 +1,98 @@
+body {
+    font-family: 'Inter', sans-serif; /* Установка основного шрифта */
+    background: linear-gradient(135deg, #f0f2f5, #dfe9f3); /* Фоновый градиент под углом 135 градусов  */
+    margin: 0; /* Убираем стандартные отступы браузера */
+    display: flex; /* Активация гибкой верстки  */
+    justify-content: center; /* Выравнивание по горизонтали */
+    align-items: center; /* Выравнивание по вертикали */
+    min-height: 100vh; /* Минимальная высота на весь экран */
+}
+
+.wrapper {
+    display: flex;
+    flex-direction: column; /* Располагаем элементы (меню и карточки) друг под другом */
+    align-items: center;
+    gap: 60px; /* Расстояние между меню и блоком карточек */
+    padding: 40px;
+}
+
+.menu {
+    display: flex;
+    gap: 30px; /* Промежуток между ссылками в меню  */
+    background: linear-gradient(90deg, #5c83f1 0%, #a65cf1 100%); /* Градиент */
+    padding: 20px 40px; /* Внутренние отступы блока */
+    border-radius: 16px; /* Скругление углов [cite: 25] */
+    box-shadow: 0 10px 30px rgba(92, 131, 241, 0.3); /* Цветная тень для эффекта объема */
+}
+
+.menu a {
+    color: #ffffff; /* Белый цвет текста для контраста [cite: 6] */
+    text-decoration: none; /* Убираем стандартное подчеркивание ссылки [cite: 27] */
+    font-weight: 600; /* Жирность шрифта [cite: 27] */
+    position: relative; /* База для позиционирования линии подчеркивания [cite: 27] */
+    transition: color 0.3s ease, transform 0.2s ease; /* Плавность изменения цвета и размера [cite: 27] */
+    opacity: 0; /* Скрываем до начала анимации появления [cite: 31] */
+    animation: fadeInUp 0.6s ease forwards; /* Запуск анимации появления [cite: 31] */
+}
+
+.menu a::after {
+    content: ""; /* Создаем пустой элемент для рисования линии [cite: 29] */
+    position: absolute;
+    left: 0;
+    bottom: -5px; /* Смещение линии чуть ниже текста [cite: 29] */
+    width: 0; /* Изначально линия невидима (ширина 0) [cite: 29] */
+    height: 2px;
+    background: #ffffff;
+    transition: width 0.3s ease; /* Анимация роста линии [cite: 29] */
+}
+
+.menu a:hover::after {
+    width: 100%; /* Линия растягивается на всю длину текста при наведении [cite: 29] */
+}
+
+.menu a:active {
+    transform: scale(0.95); /* Эффект "нажатия" (уменьшение) [cite: 34] */
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(15px); /* Смещение вниз в начале анимации [cite: 31] */
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0); /* Возврат в исходную позицию [cite: 31] */
+    }
+}
+
+/* Настройка задержек: каждый следующий пункт появляется позже предыдущего [cite: 31] */
+.menu a:nth-child(1) { animation-delay: 0.2s; }
+.menu a:nth-child(2) { animation-delay: 0.4s; }
+.menu a:nth-child(3) { animation-delay: 0.6s; }
+.menu a:nth-child(4) { animation-delay: 0.8s; }
+
+.card-container {
+    display: flex;
+    gap: 20px;
+}
+
+.card {
+    width: 160px;
+    height: 100px;
+    background: #fff;
+    border-radius: 12px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #555;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    /* Использование сложной функции времени для эффекта "пружины" [cite: 10] */
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.3s ease;
+    cursor: pointer;
+}
+
+.card:hover {
+    transform: translateY(-10px) scale(1.05); /* Подъем и увеличение карточки [cite: 10] */
+    box-shadow: 0 15px 35px rgba(166, 92, 241, 0.2); /* Усиление тени при наведении */
+    color: #a65cf1;
+}
